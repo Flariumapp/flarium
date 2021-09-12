@@ -3,54 +3,78 @@ package com.fia.project.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.sun.istack.NotNull;
+
 @Entity
-@Table(name="flight")
+@Table(name="flights")
 public class Flight {
 	
 	// define fields
+	@Id
+	@Column(name="id")
+	private String id;
 	
 	@Column(name="destination")
+	@NotNull
 	private String destination;
 	
 	@Column(name="time")
+	@NotNull
 	private int time;
 	
 	@Column(name="terminal")
+	@NotNull
 	private String terminal;
 	
 	@Column(name="gate_no")
+	@NotNull
 	private String gateNo;
 	
 	@Column(name="is_arriving")
+	@NotNull
 	private int isArriving;
 	
 	@Column(name="is_international")
-	private String isInternational;
+	@NotNull
+	private int isInternational;
 	
-	@ManyToOne(cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-	@JoinColumn(name="id")
-	private Plane plane;
+	@JsonBackReference
+	@ManyToOne(cascade={CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+	@JoinColumn(name="company")
+	private Company company;
 	
 	// define constructors
 	
 	public Flight() {}
 
-	public Flight(String destination, int time, String terminal, String gateNo, int isArriving,
-			String isInternational) {
+	public Flight(String id, String destination, int time, String terminal, String gateNo,
+			int isArriving, int isInternational) {
+		this.id = id;
 		this.destination = destination;
 		this.time = time;
 		this.terminal = terminal;
 		this.gateNo = gateNo;
+//		this.company = company;
 		this.isArriving = isArriving;
 		this.isInternational = isInternational;
 	}
 
 	// generate getters and setters
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	
 	public String getDestination() {
 		return destination;
 	}
@@ -91,28 +115,26 @@ public class Flight {
 		this.isArriving = isArriving;
 	}
 
-	public String getIsInternational() {
+	public int getIsInternational() {
 		return isInternational;
 	}
 
-	public void setIsInternational(String isInternational) {
+	public void setIsInternational(int isInternational) {
 		this.isInternational = isInternational;
 	}
-	
-	public Plane getPlane() {
-		return plane;
+
+	public Company getCompany() {
+		return company;
 	}
 
-	public void setPlane(Plane plane) {
-		this.plane = plane;
+	public void setCompany(Company company) {
+		this.company = company;
 	}
-	
-	// define toString()
 
 	@Override
 	public String toString() {
-		return "Flight [destination=" + destination + ", time=" + time + ", terminal=" + terminal
+		return "Flight [id=" + id + ", destination=" + destination + ", time=" + time + ", terminal=" + terminal
 				+ ", gateNo=" + gateNo + ", isArriving=" + isArriving + ", isInternational=" + isInternational + "]";
 	}
-	
+
 }

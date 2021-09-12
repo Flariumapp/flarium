@@ -10,51 +10,42 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sun.istack.NotNull;
+
 @Entity
-@Table(name="company")
+@Table(name="companies")
 public class Company {
-	
-	// define fields
-	
 	@Id
-	@Column(name="id")
-	private String id;
+	@Column(name="company")
+	private String company;
 	
 	@Column(name="name")
+	@NotNull
 	private String name;
 	
 	@Column(name="image_url")
+	@NotNull
 	private String imageUrl;
 	
-	@OneToMany(mappedBy="company", cascade={CascadeType.ALL})
-	private List <Plane> planes;
-	
-	// define constructors
+	@JsonManagedReference
+	@OneToMany(mappedBy="company", cascade = {CascadeType.ALL})
+	private List <Flight> flights;
 	
 	public Company() {}
 
-	public Company(String id, String name, String imageUrl) {
-		this.id = id;
+	public Company(String company, String name, String imageUrl) {
+		this.company = company;
 		this.name = name;
 		this.imageUrl = imageUrl;
 	}
 
-	// generate getters/setters
-
-	public List<Plane> getPlanes() {
-		return planes;
+	public String getCompany() {
+		return company;
 	}
 
-	public void setPlanes(List<Plane> planes) {
-		this.planes = planes;
-	}
-
-	public String getId() {
-		return id;
-	}
-	
-	public void setId(String id) {
-		this.id = id;
+	public void setCompany(String company) {
+		this.company = company;
 	}
 
 	public String getName() {
@@ -73,19 +64,24 @@ public class Company {
 		this.imageUrl = imageUrl;
 	}
 	
-	// generate toString()
+	public List<Flight> getFlights() {
+		return flights;
+	}
+
+	public void setFlights(List<Flight> flights) {
+		this.flights = flights;
+	}
 
 	@Override
 	public String toString() {
-		return "Company [id=" + id + ", name=" + name + ", imageUrl=" + imageUrl + "]";
+		return "Company [company=" + company + ", name=" + name + ", imageUrl=" + imageUrl + "]";
 	}
 	
-	public void add(Plane tempPlane) {
-		if(planes == null) {
-			planes = new ArrayList <>();
+	public void add(Flight flight) {
+		if(flights == null) {
+			flights = new ArrayList <>();
 		}
-		planes.add(tempPlane);
-		tempPlane.setCompany(this);
+		flights.add(flight);
+		flight.setCompany(this);
 	}
-		
 }
