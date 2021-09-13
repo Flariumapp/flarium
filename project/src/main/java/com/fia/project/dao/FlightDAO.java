@@ -15,4 +15,8 @@ public interface FlightDAO {
 	public List <Company> addCompany(Company c);
 	
 	public Company getCompany(String companyId);
+	
+	public List <Company> addCompanies(List <Company> companies);
+	
+	public List <Flight> getFlightsFliter(int international, int arrival);
 }

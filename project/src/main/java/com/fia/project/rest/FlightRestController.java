@@ -49,4 +49,14 @@ public class FlightRestController {
 	public List <Flight> addFlight(@RequestBody Flight theFlight, @PathVariable String companyId) {
 		return flightDAO.addFlight(theFlight, companyId);
 	}
+	
+	@PostMapping("/companies") 
+	public List <Company> addCompanies(@RequestBody List <Company> companies) {
+		return flightDAO.addCompanies(companies);
+	}
+	
+	@GetMapping("/flights/{international}/{arrival}")
+	public List <Flight> getFlightsFilter(@PathVariable("international") int international, @PathVariable("arrival") int arrival) {
+		return flightDAO.getFlightsFliter(international, arrival);
+	}
 }

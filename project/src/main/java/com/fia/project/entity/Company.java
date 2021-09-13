@@ -18,7 +18,7 @@ import com.sun.istack.NotNull;
 public class Company {
 	@Id
 	@Column(name="company")
-	private String company;
+	private String id;
 	
 	@Column(name="name")
 	@NotNull
@@ -34,18 +34,19 @@ public class Company {
 	
 	public Company() {}
 
-	public Company(String company, String name, String imageUrl) {
-		this.company = company;
+	public Company(String id, String name, String imageUrl) {
+		super();
+		this.id = id;
 		this.name = name;
 		this.imageUrl = imageUrl;
 	}
 
-	public String getCompany() {
-		return company;
+	public String getId() {
+		return id;
 	}
 
-	public void setCompany(String company) {
-		this.company = company;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -74,9 +75,9 @@ public class Company {
 
 	@Override
 	public String toString() {
-		return "Company [company=" + company + ", name=" + name + ", imageUrl=" + imageUrl + "]";
+		return "Company [id=" + id + ", name=" + name + ", imageUrl=" + imageUrl + ", flights=" + flights + "]";
 	}
-	
+
 	public void add(Flight flight) {
 		if(flights == null) {
 			flights = new ArrayList <>();
