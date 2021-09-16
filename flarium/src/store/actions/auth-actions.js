@@ -16,7 +16,7 @@ export const autoLogin = (token, id, expiryDate) => {
 export const login = (loginData) => {
     return async dispatch => {
         try {
-            const response = await axios.post('api/auth/login', loginData);
+            const response = await axios.post('auth/login', loginData);
 
             const { token, id, expiryDate } = response.data;
 
@@ -24,7 +24,6 @@ export const login = (loginData) => {
 
             dispatch(setLocalVariables(token, id, expiryDateModified));
         } catch (err) {
-            dispatch(authFail(err.response.data.message));
             throw err;
         }
     }
@@ -33,7 +32,7 @@ export const login = (loginData) => {
 export const signup = (signupData) => {
     return async dispatch => {
         try {
-            const response = await axios.post('api/auth/signup', signupData);
+            const response = await axios.post('auth/signup', signupData);
 
             const { token, id, expiryDate } = response.data;
 
@@ -41,7 +40,6 @@ export const signup = (signupData) => {
 
             dispatch(setLocalVariables(token, id, expiryDateModified));
         } catch (err) {
-            dispatch(authFail(err.response.data.message));
             throw err;
         }
     }
@@ -87,10 +85,3 @@ const authSuccess = (token, id, expiryDate) => {
         expiryDate,
     }
 }
-
-const authFail = (errorMessage) => {
-    return {
-        type: actionTypes.AUTH_FAIL,
-        error: errorMessage,
-    }
-}   

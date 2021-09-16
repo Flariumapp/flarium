@@ -5,7 +5,6 @@ const initialState = {
     id: null,
     expiryDate: null,
     isAdmin: false,
-    error: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,14 +15,6 @@ const reducer = (state = initialState, action) => {
                 token: action.token,
                 id: action.id,
                 expiryDate: action.expiryDate,
-            }
-        case actionTypes.AUTH_FAIL:
-            return {
-                ...state,
-                token: null,
-                id: null,
-                expiryDate: null,
-                error: action.error,
             }
         case actionTypes.AUTH_LOGOUT:
             return {

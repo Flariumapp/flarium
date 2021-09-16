@@ -10,8 +10,10 @@ import goFirst from '../../images/logo/go-first.jpeg';
 import airAsia from '../../images/logo/air-asia.jpeg';
 // import vistara from '../../images/logo/vistara.png';
 import jetAirways from '../../images/logo/jet-airways.png';
+import { useHistory } from 'react-router';
 
 const FlightCheck = props => {
+    const history = useHistory();
 
     const flights = [
         {
@@ -60,6 +62,10 @@ const FlightCheck = props => {
             logo: spiceJet,
         }
     ];
+
+    const goToFlights = () => {
+        history.push('/flights');
+    }
     
     return (
         <Container>
@@ -84,7 +90,7 @@ const FlightCheck = props => {
             </Section>
             {/* <div style={{ width: 20 }} /> */}
             <Section width={70}>
-                <Legend>
+                <Legend onClick={goToFlights}>
                     Next Flights to Arrive/Depart
                 </Legend>
                 <NextFlightsContainer>

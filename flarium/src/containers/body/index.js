@@ -5,8 +5,15 @@ import GuestRoute from '../../guards/guest-route';
 import GuestPage from '../../pages/guest';
 import LoginPage from '../../pages/login';
 import SignupPage from '../../pages/signup';
+import HomePage from '../../pages/home';
+// import { useSelector } from 'react-redux';
+import AuthRoute from '../../guards/auth-route';
+import FlightsPage from '../../pages/flights';
 
 const Body = (props) => {
+    // const token = useSelector(state => state.ath.token);
+    const isAuth = true;
+
     return (
         <Container>
             <Switch>
@@ -16,9 +23,19 @@ const Body = (props) => {
                 <GuestRoute path={'/sign-up'} exact>
                     <SignupPage />
                 </GuestRoute>
-                <GuestRoute path={'/'} exact>
-                    <GuestPage />
+                <GuestRoute path={'/flights'} exact>
+                    <FlightsPage />
                 </GuestRoute>
+                {
+                    !isAuth ?
+                    <GuestRoute path={'/'} exact>
+                        <GuestPage />
+                    </GuestRoute>
+                    :
+                    <AuthRoute>
+                        <HomePage />
+                    </AuthRoute>
+                }
             </Switch>
         </Container>
     );

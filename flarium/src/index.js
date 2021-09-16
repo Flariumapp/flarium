@@ -10,14 +10,15 @@ import { combineReducers, applyMiddleware, createStore, compose } from 'redux';
 import Thunk from 'redux-thunk';
 
 import authReducer from './store/reducers/auth-reducer';
+import flightReducer from './store/reducers/flight-reducer';
 
 const rootReducer = combineReducers({
     ath: authReducer,
+    flt: flightReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(rootReducer, composeEnhancer(applyMiddleware(Thunk)));
-
 
 ReactDOM.render(
     <React.StrictMode>

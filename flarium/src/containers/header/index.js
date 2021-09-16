@@ -3,11 +3,10 @@ import { Brand, BrandContainer, Container, Nav, NavContainer, NavItem, Search, S
 import { FiSearch } from 'react-icons/fi';
 import logo from '../../images/app-logo/logo.png';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router';
 
 const Header = props => {
-    const token = useSelector(state => state.ath.token);
-    const isAuth = token !== null;
+    // const token = useSelector(state => state.ath.token);
+    const isAuth = true;
 
     const navigations = isAuth ? (
         <NavContainer>
