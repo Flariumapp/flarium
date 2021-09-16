@@ -3,11 +3,10 @@ import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 
 const AuthRoute = ({ children, ...props }) => {
-    // const isAuthenticated = useSelector(state => state.ath.token !== null);
-    const isAuth = true;
+    const isAdmin = useSelector(state => state.ath.isAdmin);
 
-    if (!isAuth) {
-        return <Redirect to={"/login"} />
+    if (!isAdmin) {
+        return <Redirect to={"/"} />
     }
 
     return (

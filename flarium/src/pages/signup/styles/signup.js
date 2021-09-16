@@ -3,7 +3,6 @@ import styled from 'styled-components/macro';
 export const Container = styled.div`
     width: 80%;
     margin: auto;
-    height: 65vh;
 `;
 
 export const Wrapper = styled.div`

@@ -5,23 +5,12 @@ export const Container = styled.div`
     margin: auto;
 `;
 
-export const FeatureContainer = styled.div`
-    width: 70%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    margin: 20px auto;
-`;
 
 export const Legend = styled.h1`
     color: #fff;
     text-transform: capitalize;
     text-align: center;
     font-size: 60px;
-/* 
-    &:first-letter {
-        color: #1894FF;
-    } */
 `;
 
 export const FlightDisplaycontainer = styled.div`
@@ -38,7 +27,24 @@ export const FlightDisplayWrapper = styled.div`
     padding: 20px;
 `;
 
-export const PartnerContainer = styled.div`
+export const SubLegend = styled.h2`
+    text-transform: capitalize;
+    color: #434343;
+`;
+
+export const FlightBookContainer = styled.div`
     width: 70%;
     margin: auto;
+`;
+
+export const FacilityContainer = styled.div`
+    width: 70%;
+    margin: auto;
+`;
+
+export const FacilityRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 `;
