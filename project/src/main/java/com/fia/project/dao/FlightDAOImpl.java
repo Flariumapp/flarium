@@ -84,7 +84,7 @@ public class FlightDAOImpl implements FlightDAO {
 	public List<Flight> getFlightsFliter(int international, int arrival) {
 		Session session = entityManager.unwrap(Session.class);
 		System.out.println(international + " " + arrival);
-		Query query = session.createQuery("from Flight where isInternational=:international AND isArriving=:arrival");
+		Query query = session.createQuery("from Flight where isInternational=:international AND isArriving=:arrival order by time");
 		query.setParameter("international", international);
 		query.setParameter("arrival", arrival);
 		List <Flight> flights = query.getResultList();

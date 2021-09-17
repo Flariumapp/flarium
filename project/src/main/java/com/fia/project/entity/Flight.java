@@ -8,14 +8,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 
 @Entity
 @Table(name="flights")
 public class Flight {
 	
-	// define fields
 	@Id
 	@Column(name="id")
 	private String id;
@@ -44,12 +43,10 @@ public class Flight {
 	@NotNull
 	private int isInternational;
 	
-	@JsonBackReference
+	@JsonManagedReference
 	@ManyToOne(cascade={CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
 	@JoinColumn(name="company")
 	private Company company;
-	
-	// define constructors
 	
 	public Flight() {}
 
@@ -60,12 +57,9 @@ public class Flight {
 		this.time = time;
 		this.terminal = terminal;
 		this.gateNo = gateNo;
-//		this.company = company;
 		this.isArriving = isArriving;
 		this.isInternational = isInternational;
 	}
-
-	// generate getters and setters
 
 	public String getId() {
 		return id;
