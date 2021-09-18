@@ -18,6 +18,8 @@ export const login = (loginData) => {
         try {
             const response = await axios.post('auth/login', loginData);
 
+            console.log('login:',response.data);
+
             const { token, id, expiryDate } = response.data;
 
             const expiryDateModified = new Date(expiryDate).getTime() - new Date().getTime();
@@ -34,11 +36,11 @@ export const signup = (signupData) => {
         try {
             const response = await axios.post('auth/signup', signupData);
 
-            const { token, id, expiryDate } = response.data;
+            const { token } = response.data;
 
-            const expiryDateModified = new Date(expiryDate).getTime() - new Date().getTime();
+            // const expiryDateModified = new Date(expiryDate).getTime() - new Date().getTime();
 
-            dispatch(setLocalVariables(token, id, expiryDateModified));
+            dispatch(setLocalVariables(token));
         } catch (err) {
             throw err;
         }
@@ -62,26 +64,26 @@ const authLogout = () => {
 }
 
 
-const setLocalVariables = (token, id, expiryDate) => {
+const setLocalVariables = (token) => {
     return dispatch => {
+        console.log('setting local variables', token);
         localStorage.setItem('authData', JSON.stringify({
             token,
-            id,
         }));
 
-        timer = setTimeout(() => {
-            dispatch(logout());
-        }, expiryDate);
+        // timer = setTimeout(() => {
+        //     dispatch(logout());
+        // }, 24 * 60 * 60 * 1000);
 
-        dispatch(authSuccess(token, id, expiryDate));
+        dispatch(authSuccess(token));
     }
 }
 
-const authSuccess = (token, id, expiryDate) => {
+const authSuccess = (token) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         token,
-        id,
-        expiryDate,
+        // id,
+        // expiryDate,
     }
 }

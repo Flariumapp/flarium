@@ -1,11 +1,14 @@
 import React from 'react';
-import { Brand, BrandContainer, Container, Nav, NavContainer, NavItem, Search, SearchInput, SearchContainer, LogoContainer, Logo } from './styles/header';
+import { Brand, BrandContainer, Container, Nav, NavContainer, NavItem, Search, SearchInput, SearchContainer, LogoContainer, Logo, Display, Photo } from './styles/header';
 import { FiSearch } from 'react-icons/fi';
 import logo from '../../images/app-logo/logo.png';
 import { useSelector } from 'react-redux';
+import { ProfileHash } from '../../utility/profile-map';
 
 const Header = props => {
     // const token = useSelector(state => state.ath.token);
+    // const profileIndex = useSelector(state => state.usr.currentUser.profileIndex);
+    const profileIndex = 0;
     const isAuth = true;
 
     const navigations = isAuth ? (
@@ -21,6 +24,13 @@ const Header = props => {
             </NavItem>
             <NavItem>
                 <Nav to={'/help'} activeStyle={{ color: "#1894FF" }} exact>Help Center</Nav>
+            </NavItem>
+            <NavItem>
+                <Nav to={'/profile'} exact>
+                    <Display>
+                        <Photo src={ProfileHash[profileIndex].image} alt={ProfileHash[profileIndex].caption} />
+                    </Display>
+                </Nav>
             </NavItem>
         </NavContainer>
     ) : (

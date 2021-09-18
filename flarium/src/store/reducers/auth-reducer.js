@@ -2,8 +2,8 @@ import * as actionTypes from '../action-types';
 
 const initialState = {
     token: null,
-    id: null,
-    expiryDate: null,
+    // id: null,
+    // expiryDate: null,
     isAdmin: false,
 };
 

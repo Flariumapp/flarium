@@ -83,3 +83,18 @@ export const NavItem = styled.div`
 export const Nav = styled(NavLink)`
     color: ${ ({ isActive }) => isActive ? "#1894FF" : "#707070" };
 `;
+
+export const Display = styled.div`
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 100%;
+    /* border: 0.2px solid #ccc; */
+    background-color: #eee;
+`;
+
+export const Photo = styled.img`
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+`;
