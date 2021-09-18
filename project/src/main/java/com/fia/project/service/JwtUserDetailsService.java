@@ -1,6 +1,7 @@
 package com.fia.project.service;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -36,6 +37,11 @@ public class JwtUserDetailsService implements UserDetailsService {
 		UserDao newUser = new UserDao();
 		newUser.setUsername(user.getUsername());
 		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+		newUser.setFirstName(user.getFirstName());
+		newUser.setLastName(user.getLastName());
+		Random rand = new Random();
+		int randInt = rand.nextInt(5);
+		newUser.setImageValue(randInt);
 		return userDao.save(newUser);
 	}
 

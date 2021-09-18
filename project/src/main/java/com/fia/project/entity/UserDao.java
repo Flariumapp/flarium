@@ -10,12 +10,23 @@ public class UserDao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private long id;
+    
     @Column(name="username")
     private String username;
+   
     @Column(name="password")
     @JsonIgnore
     private String password;
+    
+    @Column(name="first_name")
+    private String firstName;
+    
+    @Column(name="last_name")
+    private String lastName;
 
+    @Column(name="image_value")
+    private int imageValue;
+    
     public String getUsername() {
         return username;
     }
@@ -32,5 +43,29 @@ public class UserDao {
         this.password = password;
     }
 
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public int getImageValue() {
+		return imageValue;
+	}
+
+	public void setImageValue(int imageValue) {
+		this.imageValue = imageValue;
+	}
+    
 }
 
