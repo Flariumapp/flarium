@@ -82,8 +82,6 @@ export const NavItem = styled.div`
 
 export const Nav = styled(NavLink)`
     color: ${ ({ isActive }) => isActive ? "#1894FF" : "#707070" };
-<<<<<<< HEAD
-=======
 `;
 
 export const Display = styled.div`
@@ -99,5 +97,4 @@ export const Photo = styled.img`
     height: 100%;
     width: 100%;
     object-fit: contain;
->>>>>>> frontend-branch
 `;

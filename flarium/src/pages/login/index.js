@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import { Container, FormContainer, Wrapper, Form, ForgotPasswordContainer, ForgotPassword, CarouselContainer } from './styles/login';
-import { Button, Input } from 'antd';
-import { FiMail, FiLock } from 'react-icons/fi';
-import Carousel from '../../components/carousel';
-
-const LoginPage = props => {
-=======
 import React, { useState } from 'react';
 import { Container, FormContainer, Wrapper, Form, ForgotPasswordContainer, ForgotPassword, CarouselContainer } from './styles/login';
 import { Button, Input, message } from 'antd';
@@ -71,7 +62,6 @@ const LoginPage = props => {
         });
     }
 
->>>>>>> frontend-branch
     return (
         <Container>
             <div style={{ height: 30 }} />
@@ -80,28 +70,17 @@ const LoginPage = props => {
                     <Carousel />
                 </CarouselContainer>
                 <FormContainer>
-<<<<<<< HEAD
-                    <Form>
-                        <Input prefix={<FiMail />} placeholder="Email" size="large" />
-                        <div style={{ height: 20 }} />
-                        <Input prefix={<FiLock />} placeholder="Password" type="password" size="large" />
-=======
                     <Form onSubmit={handleLogin}>
                         <Input prefix={<FiMail />} placeholder="Email" size="large" value={email} onChange={e => setEmail(e.target.value)} />
                         <div style={{ height: 20 }} />
                         <Input prefix={<FiLock />} placeholder="Password" type="password" size="large" value={password} onChange={e => setPassword(e.target.value)} />
->>>>>>> frontend-branch
                         <ForgotPasswordContainer>
                             <ForgotPassword>
                                 forgot password ?
                             </ForgotPassword>
                         </ForgotPasswordContainer>
                         <div style={{ height: 20 }} />
-<<<<<<< HEAD
-                        <Button type="primary" htmlType="submit" block size="large">Login</Button>
-=======
                         <Button type="primary" loading={isLoading} htmlType="submit" block size="large">Login</Button>
->>>>>>> frontend-branch
                     </Form>
                 </FormContainer>
             </Wrapper>

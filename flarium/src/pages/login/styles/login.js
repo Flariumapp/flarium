@@ -3,11 +3,7 @@ import styled from 'styled-components/macro';
 export const Container = styled.div`
     width: 80%;
     margin: auto;
-<<<<<<< HEAD
-    height: 68vh;
-=======
     /* height: 68vh; */
->>>>>>> frontend-branch
 `;
 
 export const Wrapper = styled.div`

@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import { Container, FormContainer, Wrapper, Form, CarouselContainer } from './styles/signup';
-import { Button, Input } from 'antd';
-import { FiMail, FiLock } from 'react-icons/fi';
-import Carousel from '../../components/carousel';
-import { InputContainer } from './styles/signup';
-
-const SignupPage = props => {
-=======
 import React, { useState } from 'react';
 import { Container, FormContainer, Wrapper, Form, CarouselContainer } from './styles/signup';
 import { Button, Input, message } from 'antd';
@@ -102,7 +92,6 @@ const SignupPage = props => {
         });
     }
 
->>>>>>> frontend-branch
     return (
         <Container>
             <div style={{ height: 30 }} />
@@ -111,22 +100,6 @@ const SignupPage = props => {
                     <Carousel />
                 </CarouselContainer>
                 <FormContainer>
-<<<<<<< HEAD
-                    <Form>
-                        <Input prefix={<FiMail />} placeholder="Email" size="large" />
-                        <div style={{ height: 20 }} />
-                        <InputContainer>
-                            <Input placeholder="First Name" size="large" />
-                            <div style={{ width: 10 }} />
-                            <Input placeholder="Last Name" size="large" />
-                        </InputContainer>
-                        <div style={{ height: 20 }} />
-                        <Input prefix={<FiLock />} placeholder="Password" type="password" size="large" />
-                        <div style={{ height: 20 }} />
-                        <Input prefix={<FiLock />} placeholder="Confirm Password" type="password" size="large" />
-                        <div style={{ height: 20 }} />
-                        <Button type="primary" htmlType="submit" block size="large">Sign up</Button>
-=======
                     <Form onSubmit={handleSignup}>
                         <Input prefix={<FiMail />} placeholder="Email" size="large"  value={email} onChange={e => setEmail(e.target.value)} />
                         <div style={{ height: 20 }} />
@@ -141,7 +114,6 @@ const SignupPage = props => {
                         <Input prefix={<FiLock />} placeholder="Confirm Password" type="password" size="large"  value={passwordConfirm} onChange={e => setPasswordConfirm(e.target.value)} />
                         <div style={{ height: 20 }} />
                         <Button type="primary" loading={isLoading} htmlType="submit" block size="large">Sign up</Button>
->>>>>>> frontend-branch
                     </Form>
                 </FormContainer>
             </Wrapper>
