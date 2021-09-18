@@ -10,6 +10,7 @@ import { combineReducers, applyMiddleware, createStore, compose } from 'redux';
 import Thunk from 'redux-thunk';
 
 import authReducer from './store/reducers/auth-reducer';
+
 import flightReducer from './store/reducers/flight-reducer';
 
 const rootReducer = combineReducers({
