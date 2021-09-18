@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Brand, BrandContainer, Container, Nav, NavContainer, NavItem, Search, SearchInput, SearchContainer, LogoContainer, Logo } from './styles/header';
 import { FiSearch } from 'react-icons/fi';
 import logo from '../../images/app-logo/logo.png';
@@ -8,6 +9,19 @@ import { useLocation } from 'react-router';
 const Header = props => {
     const token = useSelector(state => state.ath.token);
     const isAuth = token !== null;
+=======
+import { Brand, BrandContainer, Container, Nav, NavContainer, NavItem, Search, SearchInput, SearchContainer, LogoContainer, Logo, Display, Photo } from './styles/header';
+import { FiSearch } from 'react-icons/fi';
+import logo from '../../images/app-logo/logo.png';
+import { useSelector } from 'react-redux';
+import { ProfileHash } from '../../utility/profile-map';
+
+const Header = props => {
+    // const token = useSelector(state => state.ath.token);
+    // const profileIndex = useSelector(state => state.usr.currentUser.profileIndex);
+    const profileIndex = 0;
+    const isAuth = true;
+>>>>>>> frontend-branch
 
     const navigations = isAuth ? (
         <NavContainer>
@@ -23,6 +37,16 @@ const Header = props => {
             <NavItem>
                 <Nav to={'/help'} activeStyle={{ color: "#1894FF" }} exact>Help Center</Nav>
             </NavItem>
+<<<<<<< HEAD
+=======
+            <NavItem>
+                <Nav to={'/profile'} exact>
+                    <Display>
+                        <Photo src={ProfileHash[profileIndex].image} alt={ProfileHash[profileIndex].caption} />
+                    </Display>
+                </Nav>
+            </NavItem>
+>>>>>>> frontend-branch
         </NavContainer>
     ) : (
         <NavContainer>

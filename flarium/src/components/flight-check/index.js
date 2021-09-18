@@ -10,8 +10,15 @@ import goFirst from '../../images/logo/go-first.jpeg';
 import airAsia from '../../images/logo/air-asia.jpeg';
 // import vistara from '../../images/logo/vistara.png';
 import jetAirways from '../../images/logo/jet-airways.png';
+<<<<<<< HEAD
 
 const FlightCheck = props => {
+=======
+import { useHistory } from 'react-router';
+
+const FlightCheck = props => {
+    const history = useHistory();
+>>>>>>> frontend-branch
 
     const flights = [
         {
@@ -60,6 +67,13 @@ const FlightCheck = props => {
             logo: spiceJet,
         }
     ];
+<<<<<<< HEAD
+=======
+
+    const goToFlights = () => {
+        history.push('/flights');
+    }
+>>>>>>> frontend-branch
     
     return (
         <Container>
@@ -84,7 +98,11 @@ const FlightCheck = props => {
             </Section>
             {/* <div style={{ width: 20 }} /> */}
             <Section width={70}>
+<<<<<<< HEAD
                 <Legend>
+=======
+                <Legend onClick={goToFlights}>
+>>>>>>> frontend-branch
                     Next Flights to Arrive/Depart
                 </Legend>
                 <NextFlightsContainer>

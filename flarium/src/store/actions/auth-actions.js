@@ -16,7 +16,13 @@ export const autoLogin = (token, id, expiryDate) => {
 export const login = (loginData) => {
     return async dispatch => {
         try {
+<<<<<<< HEAD
             const response = await axios.post('api/auth/login', loginData);
+=======
+            const response = await axios.post('auth/login', loginData);
+
+            console.log('login:',response.data);
+>>>>>>> frontend-branch
 
             const { token, id, expiryDate } = response.data;
 
@@ -24,7 +30,10 @@ export const login = (loginData) => {
 
             dispatch(setLocalVariables(token, id, expiryDateModified));
         } catch (err) {
+<<<<<<< HEAD
             dispatch(authFail(err.response.data.message));
+=======
+>>>>>>> frontend-branch
             throw err;
         }
     }
@@ -33,6 +42,7 @@ export const login = (loginData) => {
 export const signup = (signupData) => {
     return async dispatch => {
         try {
+<<<<<<< HEAD
             const response = await axios.post('api/auth/signup', signupData);
 
             const { token, id, expiryDate } = response.data;
@@ -42,6 +52,16 @@ export const signup = (signupData) => {
             dispatch(setLocalVariables(token, id, expiryDateModified));
         } catch (err) {
             dispatch(authFail(err.response.data.message));
+=======
+            const response = await axios.post('auth/signup', signupData);
+
+            const { token } = response.data;
+
+            // const expiryDateModified = new Date(expiryDate).getTime() - new Date().getTime();
+
+            dispatch(setLocalVariables(token));
+        } catch (err) {
+>>>>>>> frontend-branch
             throw err;
         }
     }
@@ -64,6 +84,7 @@ const authLogout = () => {
 }
 
 
+<<<<<<< HEAD
 const setLocalVariables = (token, id, expiryDate) => {
     return dispatch => {
         localStorage.setItem('authData', JSON.stringify({
@@ -94,3 +115,28 @@ const authFail = (errorMessage) => {
         error: errorMessage,
     }
 }   
+=======
+const setLocalVariables = (token) => {
+    return dispatch => {
+        console.log('setting local variables', token);
+        localStorage.setItem('authData', JSON.stringify({
+            token,
+        }));
+
+        // timer = setTimeout(() => {
+        //     dispatch(logout());
+        // }, 24 * 60 * 60 * 1000);
+
+        dispatch(authSuccess(token));
+    }
+}
+
+const authSuccess = (token) => {
+    return {
+        type: actionTypes.AUTH_SUCCESS,
+        token,
+        // id,
+        // expiryDate,
+    }
+}
+>>>>>>> frontend-branch

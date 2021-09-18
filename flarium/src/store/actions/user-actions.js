@@ -5,11 +5,18 @@ import * as actionTypes from '../action-types';
 export const fetchUsers = (token) => {
     return async dispatch => {
         try {
+<<<<<<< HEAD
             const response = await axios.get('api/user', header(token));
             const { users } = response.data;
             dispatch(setUsers(users));
         } catch (err) {
             dispatch(userFail(err.response.data.message));
+=======
+            const response = await axios.get('user', header(token));
+            const { users } = response.data;
+            dispatch(setUsers(users));
+        } catch (err) {
+>>>>>>> frontend-branch
             throw err;
         }
     }
@@ -31,11 +38,18 @@ const setUsers = (users) => {
 export const fetchCurrentUser = (token) => {
     return async dispatch => {
         try {
+<<<<<<< HEAD
             const response = await axios.get('api/current-user', header(token));
             const { currentUser } = response.data;
             dispatch(setCurrentUser(currentUser));
         } catch (err) {
             dispatch(userFail(err.response.data.message));
+=======
+            const response = await axios.get('current-user', header(token));
+            const { currentUser } = response.data;
+            dispatch(setCurrentUser(currentUser));
+        } catch (err) {
+>>>>>>> frontend-branch
             throw err;
         }
     }
@@ -52,10 +66,16 @@ const setCurrentUser = (currentUser) => {
 export const updateUser = (token, id, userData) => {
     return async dispatch => {
         try {
+<<<<<<< HEAD
             await axios.put('api/user/' + id, userData, header(token));
             dispatch(userSuccess());
         } catch (err) {
             dispatch(userFail(err.response.data.message));
+=======
+            await axios.put('user/' + id, userData, header(token));
+            dispatch(userSuccess());
+        } catch (err) {
+>>>>>>> frontend-branch
             throw err;
         }
     }
@@ -64,6 +84,7 @@ export const updateUser = (token, id, userData) => {
 export const deleteUser = (token, id) => {
     return async dispatch => {
         try {
+<<<<<<< HEAD
             await axios.delete('api/user/' + id, header(token));
             dispatch(userSuccess());
         } catch (err) {
@@ -100,6 +121,11 @@ export const userOnlineStatus = (token, onlineData) => {
             dispatch(userSuccess());
         } catch (err) {
             dispatch(userFail(err.response.data.message));
+=======
+            await axios.delete('user/' + id, header(token));
+            dispatch(userSuccess());
+        } catch (err) {
+>>>>>>> frontend-branch
             throw err;
         }
     }
@@ -110,6 +136,7 @@ const userSuccess = () => {
         type: actionTypes.USER_SUCCESS,
     }
 }
+<<<<<<< HEAD
 
 const userFail = (errorMessage) => {
     return {
@@ -117,3 +144,5 @@ const userFail = (errorMessage) => {
         error: errorMessage,
     }
 }
+=======
+>>>>>>> frontend-branch
