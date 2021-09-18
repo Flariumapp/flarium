@@ -1,4 +1,5 @@
 import axios from '../../axios-config';
+import { baseUrl } from '../../utility/base-url';
 import { CompanyHash } from '../../utility/company-map';
 import { FlightStatusHash } from '../../utility/flight-status-map';
 import { SET_FLIGHTS, FLIGHT_SUCCESS } from '../action-types';
@@ -46,9 +47,10 @@ const setFlights = (flights) => {
             isArrival,
             isInternational,
             company: {
-                // id: cpy.id,
-                brand: 'spicejet',
-                logo: CompanyHash['spicejet'].logo,
+                id: cpy.id,
+                brand: cpy.name,
+                // logo: CompanyHash['spicejet'].logo,
+                logo: cpy.url === null || cpy.url.trim().length === 0 ? CompanyHash['spicejet'].logo : baseUrl + cpy.url,
             },
             status: {
                 text: 'scheduled',
