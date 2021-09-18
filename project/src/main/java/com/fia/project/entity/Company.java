@@ -35,7 +35,6 @@ public class Company {
 	public Company() {}
 
 	public Company(String id, String name, String imageUrl) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.imageUrl = imageUrl;
