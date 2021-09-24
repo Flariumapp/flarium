@@ -7,7 +7,7 @@ import com.fia.project.entity.Product;
 public interface ProductDAO {
 	public List <Product> findAll();
 	
-	public List <Product> saveProducts(List <Product> products);
+	public Product saveProduct(Product product);
 	
 	public List <Product> findByCategory(String category);
 }

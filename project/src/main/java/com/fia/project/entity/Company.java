@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -28,7 +29,7 @@ public class Company {
 	@NotNull
 	private String imageUrl;
 	
-	@JsonBackReference
+	@JsonManagedReference
 	@OneToMany(mappedBy="company", cascade = {CascadeType.ALL})
 	private List <Flight> flights;
 	

@@ -21,20 +21,18 @@ public class ProductDAOImpl implements ProductDAO {
 	public ProductDAOImpl(EntityManager theEntityManager) {
 		entityManager = theEntityManager;
 	}
-	
+
 	@Override
-	public List <Product> findAll() {
+	public List<Product> findAll() {
 		Session session = entityManager.unwrap(Session.class);
 		return session.createQuery("from Product").getResultList();
 	}
-	
+
 	@Override
-	public List <Product> saveProducts(List <Product> products) {
+	public Product saveProduct(Product product) {
 		Session session = entityManager.unwrap(Session.class);
-		for(Product product: products) {
-			session.save(product);
-		}
-		return findAll();
+		session.save(product);
+		return product;
 	}
 
 	@Override

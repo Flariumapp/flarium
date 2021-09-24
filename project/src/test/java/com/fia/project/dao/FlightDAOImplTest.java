@@ -26,6 +26,16 @@ class FlightDAOImplTest {
 	@Rollback(true)
 	public void addCompanyTest() {
 		Company c = new Company("SG", "Spice Jet", "url");
+		flightDAO.addCompany(c);
+		List <Company> list = flightDAO.getCompanies();
+		assertEquals(list.get(0).getId(), c.getId());
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void addCompaniesTest() {
+		Company c = new Company("SG", "Spice Jet", "url");
 		List <Company> companies = new ArrayList <>();
 		companies.add(c);
 		flightDAO.addCompanies(companies);

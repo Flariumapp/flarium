@@ -27,31 +27,28 @@ class ProductDAOImplTest {
 	@Transactional
 	@Rollback(true)
 	public void testFindAllProduct() {
-		List <Product> products = new ArrayList <>();
-		products.add(new Product(1, "mug", 10, "utensil", "image"));
-		productDAO.saveProducts(products);
+		Product product = new Product(1, "mug", 10, "utensil", "image");
+		productDAO.saveProduct(product);
 		List <Product> list = productDAO.findAll();
-		assertEquals(products.get(0).getName(), list.get(0).getName());
+		assertEquals(product.getName(), list.get(0).getName());
 	}
 	
 	@Test
 	@Transactional
 	@Rollback(true)
 	public void addProductsTest() {
-		List <Product> products = new ArrayList <>();
-		products.add(new Product(1, "mug", 10, "utensil", "image"));
-		productDAO.saveProducts(products);
+		Product product = new Product(1, "mug", 10, "utensil", "image");
+		productDAO.saveProduct(product);
 		List <Product> list = productDAO.findAll();
-		assertEquals(products.get(0).getName(), list.get(0).getName());
+		assertEquals(product.getName(), list.get(0).getName());
 	}
 	
 	@Test
 	@Transactional
 	@Rollback(true)
 	public void findByCategoryTest() {
-		List <Product> products = new ArrayList <>();
-		products.add(new Product(1, "mug", 10, "utensil", "image"));
-		productDAO.saveProducts(products);
+		Product product = new Product(1, "mug", 10, "utensil", "image");
+		productDAO.saveProduct(product);
 		String category = "utensil";
 		List <Product> list = productDAO.findByCategory(category);
 		assertEquals(1, list.size());
