@@ -12,7 +12,7 @@ public interface FlightDAO {
 	
 	public List <Flight> addFlight(Flight f, String companyId);
 	
-	public List <Company> addCompany(Company c);
+	public Company addCompany(Company c);
 	
 	public Company getCompany(String companyId);
 	

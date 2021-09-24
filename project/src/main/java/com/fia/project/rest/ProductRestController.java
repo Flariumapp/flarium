@@ -3,6 +3,9 @@ package com.fia.project.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,21 +27,21 @@ public class ProductRestController {
 		this.productService = productService;
 	}
 	
+	@PreAuthorize("permitAll()")
 	@CrossOrigin
 	@GetMapping("/products")
 	public List <Product> getProducts() {
 		return productService.findAll();
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@CrossOrigin
 	@PostMapping("/products")
-	public List <Product> saveProducts(@RequestBody List <Product> products) {
-		for(Product product: products) {
-			System.out.println(product);
-		}
-		return productService.saveProducts(products);
+	public Product saveProduct(@RequestBody Product product) {
+		return productService.saveProduct(product);
 	}
 	
+	@PreAuthorize("permitAll()")
 	@CrossOrigin
 	@GetMapping("/products/{category}")
 	public List <Product> getProductsByCategory(@PathVariable String category) {

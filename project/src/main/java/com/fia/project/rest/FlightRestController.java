@@ -3,6 +3,9 @@ package com.fia.project.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,18 +29,21 @@ public class FlightRestController {
 		flightDAO = tfd;
 	}
 	
+	@PreAuthorize("permitAll()")
 	@CrossOrigin
 	@GetMapping("/flights") 
 	public List <Flight> getFlights() {
 		return flightDAO.getFlights();
 	}
 	
+	@PreAuthorize("permitAll()")
 	@CrossOrigin
 	@GetMapping("/companies")
 	public List <Company> getCompanies() {
 		return flightDAO.getCompanies();
 	}
 	
+	@PreAuthorize("permitAll()")
 	@CrossOrigin
 	@GetMapping("/companies/{companyId}")
 	public Company getCompany(@PathVariable String companyId) {
@@ -48,18 +54,22 @@ public class FlightRestController {
 		return company;
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@CrossOrigin
 	@PostMapping("/flights/{companyId}")
 	public List <Flight> addFlight(@RequestBody Flight theFlight, @PathVariable String companyId) {
 		return flightDAO.addFlight(theFlight, companyId);
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@CrossOrigin
 	@PostMapping("/companies") 
-	public List <Company> addCompanies(@RequestBody List <Company> companies) {
-		return flightDAO.addCompanies(companies);
+	public ResponseEntity<Company> addCompany(@RequestBody Company company) {
+		Company c = flightDAO.addCompany(company);
+		return new ResponseEntity<>(c, HttpStatus.CREATED);
 	}
 	
+	@PreAuthorize("permitAll()")
 	@CrossOrigin
 	@GetMapping("/flights/{international}/{arrival}")
 	public List <Flight> getFlightsFilter(@PathVariable("international") int international, @PathVariable("arrival") int arrival) {

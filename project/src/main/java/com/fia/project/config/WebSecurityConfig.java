@@ -27,13 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private UserDetailsService jwtUserDetailsService;
 
 	@Autowired
-	private JwtRequestFilter jwtRequestFilter;
-
-	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		// configure AuthenticationManager so that it knows from where to load
-		// user for matching credentials
-		// Use BCryptPasswordEncoder
 		auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
 	}
 
@@ -50,18 +44,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		// We don't need CSRF
 		httpSecurity.csrf().disable()
-				// dont authenticate these particular requests
-				.authorizeRequests().antMatchers("/authenticate", "/register" ,"/api/**", "/shop/**").permitAll().
-				// all other requests need to be authenticated
-						anyRequest().authenticated().and().
-				// make sure we use stateless session; session won't be used to
-				// store user's state.
-						exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-		// Add a filter to validate the tokens with every request
-		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+//				.authorizeRequests()
+//					.antMatchers("/authenticate", "/register", "/roles").permitAll()
+//					.anyRequest().authenticated()
+//				.and()
+				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+				.and().
+				sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 	}
+	
+	@Bean
+    public JwtAuthenticationFilter authenticationTokenFilterBean() throws Exception {
+        return new JwtAuthenticationFilter();
+    }
 }

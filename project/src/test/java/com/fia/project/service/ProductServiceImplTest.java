@@ -43,18 +43,15 @@ class ProductServiceImplTest {
 	
 	@Test
 	public void saveProductsTest() {
-		List <Product> products = new ArrayList<Product>();
-		products.add(new Product(1, "cup", 10, "utensil", "imageUrl"));
-		products.add(new Product(2, "mug", 10, "utensil", "imageUrl"));
-		products.add(new Product(3, "can", 10, "utensil", "imageUrl"));
-		when(productDAO.saveProducts(products)).thenReturn(products);
-		List <Product> list = productService.saveProducts(products);
-		assertEquals(3, list.size());
-		verify(productDAO, times(1)).saveProducts(products);
+		Product p = new Product(1, "cup", 10, "utensil", "imageUrl");
+		when(productDAO.saveProduct(p)).thenReturn(p);
+		Product result = productService.saveProduct(p);
+		assertEquals(p.getName(), result.getName());
+		verify(productDAO, times(1)).saveProduct(p);
 	}
 	
 	@Test
-	public void find0ProductsByCategoryTest() {
+	public void findProductsByCategoryTest() {
 		String category = "utensil";
 		List <Product> products = new ArrayList<Product>();
 		products.add(new Product(1, "cup", 10, "utensil", "imageUrl"));

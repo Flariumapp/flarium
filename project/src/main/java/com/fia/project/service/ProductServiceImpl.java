@@ -27,8 +27,8 @@ public class ProductServiceImpl implements ProductService {
 
 	@Transactional
 	@Override
-	public List<Product> saveProducts(List <Product> products) {
-		return productDAO.saveProducts(products);
+	public Product saveProduct(Product product) {
+		return productDAO.saveProduct(product);
 	}
 
 	@Transactional

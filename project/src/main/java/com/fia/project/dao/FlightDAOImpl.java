@@ -62,10 +62,10 @@ public class FlightDAOImpl implements FlightDAO {
 	
 	@Override
 	@Transactional
-	public List <Company> addCompany(Company c) {
+	public Company addCompany(Company c) {
 		Session session = entityManager.unwrap(Session.class);
 		session.save(c);
-		return getCompanies();
+		return c;
 	}
 
 	@Override
