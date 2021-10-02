@@ -27,7 +27,7 @@ public class ProductRestController {
 		this.productService = productService;
 	}
 	
-	@PreAuthorize("permitAll()")
+	@PreAuthorize("hasRole('USER')")
 	@CrossOrigin
 	@GetMapping("/products")
 	public List <Product> getProducts() {
@@ -41,7 +41,7 @@ public class ProductRestController {
 		return productService.saveProduct(product);
 	}
 	
-	@PreAuthorize("permitAll()")
+	@PreAuthorize("hasRole('USER')")
 	@CrossOrigin
 	@GetMapping("/products/{category}")
 	public List <Product> getProductsByCategory(@PathVariable String category) {

@@ -39,6 +39,12 @@ public class User {
     @Column(name="image_value")
     private int imageValue;
     
+    @Column(name="enabled")
+    private int enabled;
+    
+    @Column(name="verification_code")
+    private String verificationCode;
+    
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
     	name = "user_roles",
@@ -106,6 +112,23 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+
+	public int getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
+
+	public String getVerificationCode() {
+		return verificationCode;
+	}
+
+	public void setVerificationCode(String verificationCode) {
+		this.verificationCode = verificationCode;
+	}
     
+	
 }
 
